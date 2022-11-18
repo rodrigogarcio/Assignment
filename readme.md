@@ -34,6 +34,7 @@ At the end of the process, a .txt file will be created and it will contain the o
     
     python conf.py -t vyos -ip 10.0.0.6 -u vyos -p vyos -port 22
 
+
     ----------------------------------
     Configuring the Services you want:
     ----------------------------------
@@ -49,8 +50,8 @@ At the end of the process, a .txt file will be created and it will contain the o
     Select the name of the second ethernet adapter: eth1
     Description for the first ethernet adaptor: WAN
     Description for the second ethernet adaptor: LAN
-    Please provide the subnet address space (CIDR included): 192.168.0.0/24
-    Specify the gateway IP Address: 192.168.0.1
+    Please provide the subnet address space (CIDR included): 10.200.6.0/24
+    Specify the gateway IP Address for your subnet: 10.200.6.1
 
 
                 Step 2
@@ -63,8 +64,8 @@ At the end of the process, a .txt file will be created and it will contain the o
     Provide a domain name: [example.com]  vyos.net
     Provide the lease time, in seconds, for IP Assignment: [default:86400]  86400
     Provide the ID range number: 0
-    Specify the first available address of the DHCP pool: 192.168.0.9
-    Specify the last available address of the DHCP pool: 192.168.0.254
+    Specify the first available address of the DHCP pool: 10.200.6.10
+    Specify the last available address of the DHCP pool: 10.200.6.100
 
 
                 Step 3
@@ -81,8 +82,8 @@ At the end of the process, a .txt file will be created and it will contain the o
     Configuring the NAT
     ------------------------------------
 
-    Do you want to configure the DNS service? [yes or no]  y
-    Specify the rule number for network address translation: 100
+    Do you want to configure the NAT service? [yes or no]  y
+    Specify the rule number for network address translation: 150
 
 
                 Step 5
@@ -90,7 +91,8 @@ At the end of the process, a .txt file will be created and it will contain the o
     Commiting the Previous Configuration
     ------------------------------------
 
-    ["set interfaces ethernet eth1 address '192.168.0.1/24'", 'set interfaces ethernet eth0 description WAN', 'set interfaces ethernet eth1 description LAN']
-    ["set service dhcp-server shared-network-name LAN subnet 192.168.0.0/24 default-router '192.168.0.1'", "set service dhcp-server shared-network-name LAN subnet 192.168.0.0/24 domain-name 'vyos.net'", "set service dhcp-server shared-network-name LAN subnet 192.168.0.0/24 lease '86400'", 'set service dhcp-server shared-network-name LAN subnet 192.168.0.0/24 range 0 start 192.168.0.9', "set service dhcp-server shared-network-name LAN subnet 192.168.0.0/24 range 0 stop '192.168.0.254'"]
-    ["set service dns forwarding cache-size '0'", "set service dns forwarding listen-address '192.168.0.1'", "set service dns forwarding allow-from '192.168.0.0/24'"]
-    ["set nat source rule 100 outbound-interface 'eth0'", "set nat source rule 100 source address '192.168.0.0/24'", 'set nat source rule 100 translation address masquerade']
+    ["set interfaces ethernet eth1 address '10.200.6.1/24'", 'set interfaces ethernet eth0 description WAN', 'set interfaces ethernet eth1 description LAN']
+    ["set service dhcp-server shared-network-name LAN subnet 10.200.6.0/24 default-router '10.200.6.1'", "set service dhcp-server shared-network-name LAN subnet 10.200.6.0/24 domain-name 'vyos.net'", "set service 
+    dhcp-server shared-network-name LAN subnet 10.200.6.0/24 lease '86400'", 'set service dhcp-server shared-network-name LAN subnet 10.200.6.0/24 range 0 start 10.200.6.10', "set service dhcp-server shared-network-name LAN subnet 10.200.6.0/24 range 0 stop '10.200.6.100'"]
+    ["set service dns forwarding cache-size '0'", "set service dns forwarding listen-address '10.200.6.1'", "set service dns forwarding allow-from '10.200.6.0/24'"]
+    ["set nat source rule 150 outbound-interface 'eth0'", "set nat source rule 150 source address '10.200.6.0/24'", 'set nat source rule 150 translation address masquerade']

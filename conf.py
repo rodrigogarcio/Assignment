@@ -208,48 +208,48 @@ if choice1 == 'yes' and choice2 == 'yes' and choice3 == 'yes' or choice1 == 'y' 
     out_list.extend([dhcp_out,dns_out,nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice1 == 'yes' and choice2 == 'yes' or choice1 == 'y' and choice2 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,dns_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice1 == 'yes' and choice3 == 'yes' or choice1 == 'y' and choice3 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice2 == 'yes' and choice3 == 'yes' or choice2 == 'y' and choice3 == 'y':
     out_list = [if_out]
     out_list.extend([dns_out,nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice1 == 'yes' or choice1 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice2 == 'yes' or choice2 == 'y':
     out_list = [if_out]
     out_list.extend([dns_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 elif choice3 == 'yes' or choice3 == 'y':
     out_list = [if_out]
     out_list.extend([nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 else:
     out_list = [if_out]
     out_list.extend([commit_out,show_if,show_config])
 
     for o in out_list:
-        out_file.write(o + "\n")
+        out_file.write("\n"+o)
 
 out_file.close()
