@@ -170,17 +170,21 @@ Commiting the Previous Configuration
 if_out = vyos_connection.send_config_set(ifconfig,exit_config_mode=False) # Variable will always be created
 
 try:
-    print(ifconfig)
-    print(dhcpconfig)
-    print(dnsconfig)
-    print(natconfig)
-    
     dhcp_out = vyos_connection.send_config_set(dhcpconfig,exit_config_mode=False)
     dns_out = vyos_connection.send_config_set(dnsconfig,exit_config_mode=False)
     nat_out = vyos_connection.send_config_set(natconfig,exit_config_mode=False)
 except (NameError,ValueError):
     print("\nSome Variables were not Created\n")
 
+# Display the Variables:
+
+try:
+    print(ifconfig)
+    print(dhcpconfig)
+    print(dnsconfig)
+    print(natconfig)
+except (NameError,ValueError):
+    print("\nSome Variables were not Created\n")
 
 # Commit Configuration:
 
@@ -199,25 +203,25 @@ out_file = open(myPath+'\\output.txt', 'a')
 
 out_list = []
 
-if choice1 == choice2 == choice3 == 'yes' or choice1 == choice2 == choice3 == 'y':
+if choice1 == 'yes' and choice2 == 'yes' and choice3 == 'yes' or choice1 == 'y' and choice2 == 'y' and choice3 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,dns_out,nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
         out_file.write(o + "\n")
-elif choice1 == choice2 == 'yes' or choice1 == choice2 == 'y':
+elif choice1 == 'yes' and choice2 == 'yes' or choice1 == 'y' and choice2 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,dns_out,commit_out,show_if,show_config])
 
     for o in out_list:
         out_file.write(o + "\n")
-elif choice1 == choice3 == 'yes' or choice1 == choice3 == 'y':
+elif choice1 == 'yes' and choice3 == 'yes' or choice1 == 'y' and choice3 == 'y':
     out_list = [if_out]
     out_list.extend([dhcp_out,nat_out,commit_out,show_if,show_config])
 
     for o in out_list:
         out_file.write(o + "\n")
-elif choice2 == choice3 == 'yes' or choice2 == choice3 == 'y':
+elif choice2 == 'yes' and choice3 == 'yes' or choice2 == 'y' and choice3 == 'y':
     out_list = [if_out]
     out_list.extend([dns_out,nat_out,commit_out,show_if,show_config])
 
